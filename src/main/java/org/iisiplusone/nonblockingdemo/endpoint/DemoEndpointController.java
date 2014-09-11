@@ -33,14 +33,13 @@ public class DemoEndpointController {
     @RequestMapping ( value ="invoke", method = GET)
     @ResponseBody
     public DeferredResult<String> invoke(){
-    	ExecutorService executor = Executors.newFixedThreadPool(4);
-    	
+    	ExecutorService executor = Executors.newFixedThreadPool(4);    	
     	ExecutionContext ec = ExecutionContexts.fromExecutorService(executor);   	 
     	
     	final DeferredResult<String> deferredResult = new DeferredResult<String>();
     	    	    	   	
-		Future<HttpResponse> future1 = invokeHttpGet("http://www.apache.org");    	
-		Future<HttpResponse> future2 = invokeHttpGet("http://www.nu.nl");		
+		Future<HttpResponse> future1 = invokeHttpGet("http://www.scala-lang.org/");    	
+		Future<HttpResponse> future2 = invokeHttpGet("http://camel.apache.org");		
 		Future<HttpResponse> future3 = invokeHttpGet("http://www.slashdot.org");
 								
 		future1.
@@ -50,44 +49,7 @@ public class DemoEndpointController {
 							
 		return deferredResult;
     }
-    
-    
-	private OnComplete<String> toDeferredResult(
-			final DeferredResult<String> deferredResult) {
-		return new OnComplete<String>() {
-
-			@Override
-			public void onComplete(Throwable arg0, String arg1) throws Throwable {
-				if( arg0==null){
-					deferredResult.setResult(arg1);					
-				} else {
-					deferredResult.setErrorResult(arg0);					
-				}				
-			}
-		};
-	}
-
-	private Mapper<Tuple2<String, HttpResponse>, String> appendContentLength() {
-		return new Mapper<Tuple2<String,HttpResponse>, String>() {
-			
-			@Override
-		    public String apply(scala.Tuple2<String, HttpResponse> zipped) {
-		        return "("+zipped._1()+","+zipped._2().getEntity().getContentLength()+")";
-		      }
-			};
-	}
-
-	private Mapper<Tuple2<HttpResponse, HttpResponse>, String> concatContentLength() {
-		return new Mapper<Tuple2<HttpResponse,HttpResponse>, String>() {
-			
-			@Override
-		    public String apply(scala.Tuple2<HttpResponse, HttpResponse> zipped) {
-		        return "("+zipped._1().getEntity().getContentLength()+","+zipped._2().getEntity().getContentLength()+")";
-		      }
-		    
-		};
-	}
-
+ 
 	private Future<HttpResponse> invokeHttpGet(String url) {
 		final Promise<HttpResponse> promise1 = Futures.promise();
 		
@@ -109,5 +71,40 @@ public class DemoEndpointController {
     	Future<HttpResponse> future1 = promise1.future();
 		return future1;
 	}
- 
+	
+	private Mapper<Tuple2<HttpResponse, HttpResponse>, String> concatContentLength() {
+		return new Mapper<Tuple2<HttpResponse,HttpResponse>, String>() {
+			
+			@Override
+		    public String apply(scala.Tuple2<HttpResponse, HttpResponse> zipped) {
+		        return "("+zipped._1().getEntity().getContentLength()+","+zipped._2().getEntity().getContentLength()+")";
+		      }
+		    
+		};
+	}
+
+	private Mapper<Tuple2<String, HttpResponse>, String> appendContentLength() {
+		return new Mapper<Tuple2<String,HttpResponse>, String>() {
+			
+			@Override
+		    public String apply(scala.Tuple2<String, HttpResponse> zipped) {
+		        return "("+zipped._1()+","+zipped._2().getEntity().getContentLength()+")";
+		      }
+			};
+	}	
+	
+	private OnComplete<String> toDeferredResult(
+			final DeferredResult<String> deferredResult) {
+		return new OnComplete<String>() {
+
+			@Override
+			public void onComplete(Throwable arg0, String arg1) throws Throwable {
+				if( arg0==null){
+					deferredResult.setResult(arg1);					
+				} else {
+					deferredResult.setErrorResult(arg0);					
+				}				
+			}
+		};
+	}
 }
