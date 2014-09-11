@@ -29,10 +29,38 @@ public class DemoEndpointController {
 	
 	@Autowired
 	private HttpAsyncClient httpClient;
-    
-    @RequestMapping ( value ="invoke", method = GET)
+	
+    @RequestMapping ( value ="invoke1", method = GET)
     @ResponseBody
-    public DeferredResult<String> invoke(){
+    public DeferredResult<String> invoke1(){
+    	
+    	final DeferredResult<String> deferredResult = new DeferredResult<String>();
+    	final long invocationTime =  System.currentTimeMillis();
+    	
+    	httpClient.execute(new HttpGet("http://www.apache.org/"), new FutureCallback<HttpResponse>() {
+			
+			
+			public void failed(Exception exception) {
+				deferredResult.setErrorResult(exception);
+			}
+			
+			
+			public void completed(HttpResponse response) {			
+				deferredResult.setResult(invocationTime+":"+response.getStatusLine().toString());				
+			}
+			
+			
+			public void cancelled() {
+				deferredResult.setResult("cancelled");				
+			}
+		});
+    	
+    	return deferredResult;
+    }
+    
+    @RequestMapping ( value ="invoke2", method = GET)
+    @ResponseBody
+    public DeferredResult<String> invoke2(){
     	ExecutorService executor = Executors.newFixedThreadPool(4);    	
     	ExecutionContext ec = ExecutionContexts.fromExecutorService(executor);   	 
     	
@@ -107,4 +135,6 @@ public class DemoEndpointController {
 			}
 		};
 	}
+	
+	
 }
