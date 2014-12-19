@@ -87,6 +87,14 @@
 					<path>/demo</path>
 				</configuration>
 			</plugin>
+			<plugin>
+              <groupId>com.heroku.sdk</groupId>
+              <artifactId>heroku-maven-plugin</artifactId>
+              <version>0.3.0</version>
+              <configuration>
+                <appName>non-blocking-demo</appName>
+              </configuration>
+            </plugin>
 		</plugins>
 	</build>
 	
