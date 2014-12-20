@@ -46,7 +46,7 @@ public class DemoEndpointController {
 			
 			
 			public void completed(HttpResponse response) {			
-				deferredResult.setResult(invocationTime+":"+response.getStatusLine().toString());				
+				deferredResult.setResult("Done in"+invocationTime+":"+response.getStatusLine().toString());				
 			}
 			
 			
