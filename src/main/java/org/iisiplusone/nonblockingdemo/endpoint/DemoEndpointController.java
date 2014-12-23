@@ -37,7 +37,7 @@ public class DemoEndpointController {
     	final DeferredResult<String> deferredResult = new DeferredResult<String>();
     	final long invocationTime =  System.currentTimeMillis();
     	
-    	httpClient.execute(new HttpGet("192.168.56.1/data"), new FutureCallback<HttpResponse>() {
+    	httpClient.execute(new HttpGet("http://192.168.56.1:8082/data"), new FutureCallback<HttpResponse>() {
 			
 			
 			public void failed(Exception exception) {
