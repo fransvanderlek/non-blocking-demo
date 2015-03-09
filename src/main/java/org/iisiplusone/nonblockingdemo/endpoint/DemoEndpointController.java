@@ -62,7 +62,7 @@ public class DemoEndpointController {
     @ResponseBody
     public DeferredResult<String> mock() throws InterruptedException{
     	
-    	long sleepTimeMs = 1000;
+    	long sleepTimeMs = 100;
     	
     	System.out.println("Sleeping for "+sleepTimeMs+" ms.");
     	Thread.sleep(sleepTimeMs);
