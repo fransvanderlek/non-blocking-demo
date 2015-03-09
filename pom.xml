@@ -110,10 +110,11 @@
 				<processTypes>
 					<web>java $JAVA_OPTS -Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123 -jar target/dependency/webapp-runner.jar --port $PORT target/*.war</web>
 				</processTypes>
-              </configuration>
-			  <includes>
+				<includes>
 				  <include>test123.jks</include>
-			   </includes>
+			    </includes>
+              </configuration>
+
             </plugin>
 		</plugins>
 	</build>
