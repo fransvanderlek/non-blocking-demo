@@ -102,17 +102,17 @@
               <version>0.3.0</version>
               <configuration>
                 <appName>non-blocking-demo</appName>
-				<!--
+				
 				<configVars> 
-					<JAVA_OPTS>-Djavax.net.ssl.trustStore="C:\ca.keystore" -Djavax.net.ssl.trustStorePassword="password"</JAVA_OPTS>
+					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123</JAVA_OPTS>
 				</configVars>
-				-->
+				
 				<processTypes>
 					<web>java $JAVA_OPTS -Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123 -jar target/dependency/webapp-runner.jar --port $PORT target/*.war</web>
 				</processTypes>
 				<includes>
 				  <include>test123.jks</include>
-			    </includes>
+			   </includes>
               </configuration>
 
             </plugin>
