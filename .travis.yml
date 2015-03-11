@@ -1,6 +1,6 @@
 language: java
 
-script: mvn clean package heroku:deploy
+script: mvn clean package heroku:deploy-war
 
 env:
   global:

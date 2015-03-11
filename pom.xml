@@ -103,17 +103,17 @@
               <configuration>
                 <appName>non-blocking-demo</appName>
 				
-				<configVars> 
-					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123</JAVA_OPTS>
-				</configVars>
+<!-- 				<configVars>  -->
+<!-- 					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123</JAVA_OPTS> -->
+<!-- 				</configVars> -->
 				
 <!-- 				<includes> -->
 <!-- 				  <include>test123.jks</include> -->
 <!-- 			   </includes> -->
 			   
-			   	<processTypes>
-					<web>java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --enable-client-auth true --port $PORT target/*.war</web>
-				</processTypes>
+<!-- 			   	<processTypes> -->
+<!-- 					<web>java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --enable-client-auth true --port $PORT target/*.war</web> -->
+<!-- 				</processTypes> -->
               </configuration>
 
             </plugin>
