@@ -83,7 +83,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.5</version>
+				<version>2.3</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
@@ -124,13 +124,13 @@
 			<plugin>
               <groupId>com.heroku.sdk</groupId>
               <artifactId>heroku-maven-plugin</artifactId>
-              <version>0.3.0</version>
+              <version>0.3.5</version>
               <configuration>
                 <appName>non-blocking-demo</appName>
 				
 				<configVars> 
-					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123</JAVA_OPTS>
-					<WEBAPP_RUNNER_OPTS>--enable-client-auth</WEBAPP_RUNNER_OPTS>
+					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123 -Djavax.net.ssl.keyStore=test123.jks -Djavax.net.ssl.keyStorePassword=test123</JAVA_OPTS>
+					
 				</configVars>
 				
 				<includes>
