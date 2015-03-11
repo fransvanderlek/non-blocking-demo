@@ -127,9 +127,10 @@
               <configuration>
                 <appName>non-blocking-demo</appName>
 				
-<!-- 				<configVars>  -->
-<!-- 					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123</JAVA_OPTS> -->
-<!-- 				</configVars> -->
+				<configVars> 
+					<JAVA_OPTS>-Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=test123.jks -Djavax.net.ssl.trustStorePassword=test123</JAVA_OPTS>
+					<WEBAPP_RUNNER_OPTS>--enable-client-auth</WEBAPP_RUNNER_OPTS>
+				</configVars>
 				
 <!-- 				<includes> -->
 <!-- 				  <include>test123.jks</include> -->
