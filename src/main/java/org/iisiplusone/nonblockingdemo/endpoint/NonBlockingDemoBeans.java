@@ -25,7 +25,7 @@ public class NonBlockingDemoBeans extends WebMvcConfigurerAdapter {
     
    
     
-    @Bean( initMethod="start", destroyMethod="close" )
+    @Bean
     public HttpClient httpDefaultClient(){
     	RequestConfig requestConfig = RequestConfig.custom()
                 .setSocketTimeout(3000)

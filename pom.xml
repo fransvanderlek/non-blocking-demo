@@ -151,15 +151,12 @@
             </plugin>
             
             <plugin>
+            	
 				<groupId>io.gatling</groupId>
 				<artifactId>gatling-maven-plugin</artifactId>
 				<version>${gatling-plugin.version}</version>
 				<executions>
 					<execution>
-						<phase>test</phase>
-						<goals>
-							<goal>execute</goal>
-						</goals>
 						<configuration>
 							<resultsFolder>target/gatling/results</resultsFolder>
 							<simulationsFolder>src/test/scala</simulationsFolder>
