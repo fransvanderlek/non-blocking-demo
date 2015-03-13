@@ -13,6 +13,8 @@
 		<httpasyncclient.version>4.0.1</httpasyncclient.version>
 		<akka-actor_2.10.version>2.3.5</akka-actor_2.10.version>
 		<jackson-databind.version>2.2.2</jackson-databind.version>
+		<gatling.version>2.0.3</gatling.version>
+		<gatling-plugin.version>2.0.0</gatling-plugin.version>
 	</properties>
 	
 	<dependencies>
@@ -67,6 +69,12 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.gatling.highcharts</groupId>
+			<artifactId>gatling-charts-highcharts</artifactId>
+			<version>${gatling.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -95,6 +103,7 @@
 				<configuration>
 					<port>8082</port>
 					<path>/demo</path>
+<!-- 					<serverXml>src/main/tomcatconf/server.xml</serverXml> -->
 				</configuration>
 			</plugin>
 			<!--
@@ -140,6 +149,24 @@
               </configuration>
 
             </plugin>
+            
+            <plugin>
+				<groupId>io.gatling</groupId>
+				<artifactId>gatling-maven-plugin</artifactId>
+				<version>${gatling-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<resultsFolder>target/gatling/results</resultsFolder>
+							<simulationsFolder>src/test/scala</simulationsFolder>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	

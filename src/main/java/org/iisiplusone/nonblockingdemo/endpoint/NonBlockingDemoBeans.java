@@ -1,6 +1,9 @@
 package org.iisiplusone.nonblockingdemo.endpoint;
 
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.nio.client.HttpAsyncClient;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +21,18 @@ public class NonBlockingDemoBeans extends WebMvcConfigurerAdapter {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorPathExtension(false).favorParameter(true);
+    }
+    
+   
+    
+    @Bean( initMethod="start", destroyMethod="close" )
+    public HttpClient httpDefaultClient(){
+    	RequestConfig requestConfig = RequestConfig.custom()
+                .setSocketTimeout(3000)
+                .setConnectTimeout(3000).build();
+        return HttpClients.custom()
+                .setDefaultRequestConfig(requestConfig)
+                .build();    
     }
     
     @Bean( initMethod="start", destroyMethod="close" )
