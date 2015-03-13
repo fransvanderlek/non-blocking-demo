@@ -34,10 +34,12 @@ public class DemoEndpointController {
     @ResponseBody
     public DeferredResult<String> invoke1(){
     	
+    	System.out.println("Started in thread: "+Thread.currentThread().getName());
+    	
     	final DeferredResult<String> deferredResult = new DeferredResult<String>();
     	final long invocationTime =  System.currentTimeMillis();
     	
-    	httpClient.execute(new HttpGet("http://192.168.33.1:8082/demo/mock"), new FutureCallback<HttpResponse>() {
+    	httpClient.execute(new HttpGet("http://192.168.56.1:8082/demo/mock"), new FutureCallback<HttpResponse>() {
 			
 			
 			public void failed(Exception exception) {
@@ -45,7 +47,8 @@ public class DemoEndpointController {
 			}
 			
 			
-			public void completed(HttpResponse response) {			
+			public void completed(HttpResponse response) {	
+				System.out.println("Resonse in: "+Thread.currentThread().getName());
 				deferredResult.setResult("Done in"+invocationTime+":"+response.getStatusLine().toString());				
 			}
 			
@@ -56,6 +59,19 @@ public class DemoEndpointController {
 		});
     	
     	return deferredResult;
+    }
+    
+    @RequestMapping ( value ="block", method = GET)
+    @ResponseBody
+    public String block() throws InterruptedException{
+    	
+    	long sleepTimeMs = 100;
+    	
+    	System.out.println("Sleeping for "+sleepTimeMs+" ms.");
+    	Thread.sleep(sleepTimeMs);
+    	
+    	    	
+    	return "Processing time:"+sleepTimeMs;
     }
     
     @RequestMapping ( value ="mock", method = GET)
