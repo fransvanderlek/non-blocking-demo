@@ -16,6 +16,6 @@ class BlockingSimulation extends Simulation {
       .get("/demo/mock"))  
 
   setUp(
-  	blockScn.inject( rampUsers(100) over (10 seconds) )
+  	blockScn.inject(  constantUsersPerSec(1000) during(30 seconds) )
   	).protocols(httpConf) 
 }

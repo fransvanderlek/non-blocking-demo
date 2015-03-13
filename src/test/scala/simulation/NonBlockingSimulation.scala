@@ -16,6 +16,6 @@ class NonBlockingSimulation extends Simulation {
    
 
   setUp(
-  	nonblockScn.inject( rampUsers(100) over (10 seconds) )
+  	nonblockScn.inject( constantUsersPerSec(1000) during(30 seconds) )
   	).protocols(httpConf) 
 }
