@@ -94,6 +94,7 @@
 				<version>2.3</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warName>non-blocking-demo</warName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -101,10 +102,10 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.1</version>
 				<configuration>
-					<port>8082</port>
+<!-- 					<port>8082</port> -->
 					<path>/demo</path>
-					<protocol>org.apache.coyote.http11.Http11NioProtocol</protocol>
-<!-- 					<serverXml>src/main/tomcatconf/server.xml</serverXml> -->
+<!-- 					<protocol>org.apache.coyote.http11.Http11NioProtocol</protocol> -->
+					<serverXml>src/main/tomcatconf/server.xml</serverXml>
 <!-- 					 <contextFile>src/main/tomcatconf/context.xml</contextFile> -->
 				</configuration>
 			</plugin>

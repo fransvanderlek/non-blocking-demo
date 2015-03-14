@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+--><!-- The contents of this file will be loaded for each web application -->
+
+<!-- <Context> -->
+
+    <!-- Default set of monitored resources -->
+<!--     <WatchedResource>WEB-INF/web.xml</WatchedResource> -->
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+    -->
+
+<!-- </Context> -->
+
+<Context path="/">
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+
+<!-- 	<Resource name="jms/WSQueueConnectionFactory" auth="Container" -->
+<!-- 		type="com.ibm.mq.jms.MQQueueConnectionFactory" factory="com.ibm.mq.jms.MQQueueConnectionFactoryFactory"  -->
+<!-- 		description="JMS Queue Connection Factory" HOST="kl109dih.cs.ad.klmcorp.net" -->
+<!-- 		PORT="1416" CHAN="JAVA_DEV.SVRCONN" TRAN="1" -->
+<!-- 		QMGR="KLDACLNT" /> -->
+
+<!-- 	<Resource name="jms/calculatebonus_request_queue" auth="Container" type="com.ibm.mq.jms.MQQueue" -->
+<!-- 		factory="com.ibm.mq.jms.MQQueueFactory" QU="CALCULATEBONUS_REQUEST" /> -->
+		
+<!-- 	<Resource name="jms/calculatebonus_response_queue" auth="Container" type="com.ibm.mq.jms.MQQueue" -->
+<!-- 		factory="com.ibm.mq.jms.MQQueueFactory" QU="CALCULATEBONUS_RESPONSE" /> -->
+		
+<!-- 	<Resource name="jms/calculatebonus_reject_queue" auth="Container" type="com.ibm.mq.jms.MQQueue" -->
+<!-- 		factory="com.ibm.mq.jms.MQQueueFactory" QU="CALCULATEBONUS_REJECT" /> -->
+
+ 
+<!--       <Resource -->
+<!--         name="jms/WSQueueConnectionFactory" -->
+<!--         auth="Container" -->
+<!--         type="org.apache.activemq.ActiveMQConnectionFactory" -->
+<!--         description="JMS Connection Factory" -->
+<!--         factory="org.apache.activemq.jndi.JNDIReferenceFactory" -->
+<!--         brokerURL="tcp://localhost:61616" -->
+<!--         brokerName="LocalActiveMQBroker" -->
+<!--         useEmbeddedBroker="false"/> -->
+ 
+<!--     <Resource name="jms/calculatebonus_request_queue" -->
+<!--         auth="Container" -->
+<!--         type="org.apache.activemq.command.ActiveMQQueue" -->
+<!--         factory="org.apache.activemq.jndi.JNDIReferenceFactory" -->
+<!--         physicalName="JMSRequestQueue"/> -->
+        
+<!--     <Resource name="jms/calculatebonus_response_queue" -->
+<!--         auth="Container" -->
+<!--         type="org.apache.activemq.command.ActiveMQQueue" -->
+<!--         factory="org.apache.activemq.jndi.JNDIReferenceFactory" -->
+<!--         physicalName="JMSResponseQueue"/>	 -->
+        
+<!--     <Resource name="jms/calculatebonus_reject_queue" -->
+<!--         auth="Container" -->
+<!--         type="org.apache.activemq.command.ActiveMQQueue" -->
+<!--         factory="org.apache.activemq.jndi.JNDIReferenceFactory" -->
+<!--         physicalName="JMSRejectQueue"/>	 -->
+
+<!--
+     <Resource   name="jms/WSQueueConnectionFactory" 
+            	type="javax.jms.ConnectionFactory" 
+         		factory="com.rabbitmq.jms.admin.RMQObjectFactory" 
+            	host="localhost" />
+     
+       <Resource   name="jms/calculatebonus_request_queue"
+              type="javax.jms.Queue"
+              factory="com.rabbitmq.jms.admin.RMQObjectFactory"
+   			  destinationName="calculatebonus_request_queue"
+              amqp="true"
+     		  amqpQueueName="rabbit_calculatebonus_request_queue"
+     		  amqpExchangeName="request_exchange"
+     		  amqpRoutingKey="request_route"
+ 			 />
+ 	   
+ 	   <Resource   name="jms/calculatebonus_response_queue"
+              type="javax.jms.Queue"
+              factory="com.rabbitmq.jms.admin.RMQObjectFactory"
+              destinationName="calculatebonus_response_queue"
+              amqp="true"
+     		  amqpQueueName="rabbit_calculatebonus_response_queue"
+     		  amqpExchangeName="response_exchange"
+     		  amqpRoutingKey="response_route"
+ 			 />
+ 			 
+ 			 
+ 		<Resource   name="jms/calculatebonus_reject_queue"
+              type="javax.jms.Queue"
+              factory="com.rabbitmq.jms.admin.RMQObjectFactory"
+              destinationName="calculatebonus_reject_queue"
+              amqp="true"
+     		  amqpQueueName="rabbit_calculatebonus_reject_queue"
+     		  amqpExchangeName="reject_exchange"
+     		  amqpRoutingKey="reject_route"
+ 			 />
+	-->
+
+        
+     <Resource  
+     	name="jms/WSQueueConnectionFactory" 
+        type="org.apache.qpid.amqp_1_0.jms.impl.ConnectionFactoryImpl" 
+        factory="com.klm.qpid.amqp_1_0.jms.impl.ConnectionFactoryFactory"
+        url="amqp:///?brokerlist='tcp://localhost:5672'"
+     />
+         		
+     <Resource   
+     	name="jms/calculatebonus_response_queue"
+        type="org.apache.qpid.amqp_1_0.jms.impl.QueueImpl"
+        factory="com.klm.qpid.amqp_1_0.jms.impl.QueueFactory"
+        url="calculatebonus_response_queue"
+ 	 />
+ 			 
+      <Resource   
+     	name="jms/calculatebonus_request_queue"
+        type="org.apache.qpid.amqp_1_0.jms.impl.QueueImpl"
+        factory="com.klm.qpid.amqp_1_0.jms.impl.QueueFactory"
+        url="calculatebonus_request_queue"
+        
+ 	 />
+ 	 
+     <Resource   
+     	name="jms/calculatebonus_reject_queue"
+        type="org.apache.qpid.amqp_1_0.jms.impl.QueueImpl"
+        factory="com.klm.qpid.amqp_1_0.jms.impl.QueueFactory"
+        url="calculatebonus_reject_queue"        
+ 	 />
+
+     <Resource   
+     	name="jms/calculatebonus_retry_queue"
+        type="org.apache.qpid.amqp_1_0.jms.impl.QueueImpl"
+        factory="com.klm.qpid.amqp_1_0.jms.impl.QueueFactory"
+        url="calculatebonus_retry_queue"        
+ 	 />	
+			 
+</Context>

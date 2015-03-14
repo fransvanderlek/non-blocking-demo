@@ -13,7 +13,7 @@ class BlockingSimulation extends Simulation {
   
   val blockScn = scenario("block") // A scenario is a chain of requests and pauses
     .exec(http("request_2")
-      .get("/demo/mock"))  
+      .get("/demo/block"))  
 
   setUp(
   	blockScn.inject(  constantUsersPerSec(1000) during(30 seconds) )
