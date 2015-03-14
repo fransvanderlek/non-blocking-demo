@@ -103,7 +103,9 @@
 				<configuration>
 					<port>8082</port>
 					<path>/demo</path>
+					<protocol>org.apache.coyote.http11.Http11NioProtocol</protocol>
 <!-- 					<serverXml>src/main/tomcatconf/server.xml</serverXml> -->
+<!-- 					 <contextFile>src/main/tomcatconf/context.xml</contextFile> -->
 				</configuration>
 			</plugin>
 			<!--
