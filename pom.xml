@@ -114,9 +114,10 @@
 						<com.sun.management.jmxremote.port>9090</com.sun.management.jmxremote.port>
 						<com.sun.management.jmxremote.ssl>false</com.sun.management.jmxremote.ssl>
 						<com.sun.management.jmxremote.authenticate>false</com.sun.management.jmxremote.authenticate>
+						<JAVA_OPTS>-Xmx2048m</JAVA_OPTS>
 					</systemProperties>
 					
-					 <JAVA_OPTS>-Xmx2048m</JAVA_OPTS>
+
 				
 				</configuration>
 			</plugin>
