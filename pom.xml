@@ -115,6 +115,8 @@
 						<com.sun.management.jmxremote.ssl>false</com.sun.management.jmxremote.ssl>
 						<com.sun.management.jmxremote.authenticate>false</com.sun.management.jmxremote.authenticate>
 					</systemProperties>
+					
+					 <JAVA_OPTS>-Xmx2048m</JAVA_OPTS>
 				
 				</configuration>
 			</plugin>
