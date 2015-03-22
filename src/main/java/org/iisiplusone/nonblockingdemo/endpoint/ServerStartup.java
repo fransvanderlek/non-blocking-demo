@@ -1,6 +1,7 @@
 package org.iisiplusone.nonblockingdemo.endpoint;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +31,9 @@ public class ServerStartup {
 		
 		try {
 			
-			Logger.getGlobal().log(Level.INFO, "Calling : http://localhost:"+System.getenv("PORT")+"/demo/mock");
+			Logger.getGlobal().log( Level.INFO, "running on ip: "+InetAddress.getLocalHost());
+			
+			Logger.getGlobal().log(Level.INFO, "Calling : http://localhost:"+System.getenv("PORT")+"/non-blocking-demo/mock");
 
 			HttpResponse response = defaultHttpClient
 			.execute(new HttpGet("http://localhost:"+System.getenv("PORT")+"/demo/mock"));
