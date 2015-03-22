@@ -3,6 +3,7 @@ package org.iisiplusone.nonblockingdemo.endpoint;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -82,14 +83,14 @@ public class DemoEndpointController {
 	@ResponseBody
 	public DeferredResult<String> mock() throws InterruptedException {
 
-		long sleepTimeMs = 100;
+		long sleepTimeMs = 1000;
 
 		System.out.println("Sleeping for " + sleepTimeMs + " ms.");
 		Thread.sleep(sleepTimeMs);
 
 		final DeferredResult<String> deferredResult = new DeferredResult<String>();
 
-		deferredResult.setResult("Processing time:" + sleepTimeMs);
+		deferredResult.setResult("Processing time:" + sleepTimeMs+" - "+(new Date()).getTime());
 
 		return deferredResult;
 	}

@@ -16,6 +16,6 @@ class BlockingSimulation extends Simulation {
       .get("/demo/block"))  
 
   setUp(
-  	blockScn.inject(  constantUsersPerSec(1000) during(30 seconds) )
+  	blockScn.inject(  constantUsersPerSec(100) during(30 seconds) )
   	).protocols(httpConf) 
 }
