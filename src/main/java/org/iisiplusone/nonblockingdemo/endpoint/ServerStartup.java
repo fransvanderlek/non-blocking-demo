@@ -31,7 +31,7 @@ public class ServerStartup {
 		
 		try {
 			
-			Logger.getGlobal().log( Level.INFO, "running on ip: "+InetAddress.getLocalHost());
+			Logger.getGlobal().log( Level.INFO, "running on ip: "+InetAddress.getLocalHost()+" is reachable= "+InetAddress.getLocalHost().isReachable(5000));
 			
 			String url =  "http://localhost:"+System.getenv("PORT")+"/non-blocking-demo/mock";
 			
