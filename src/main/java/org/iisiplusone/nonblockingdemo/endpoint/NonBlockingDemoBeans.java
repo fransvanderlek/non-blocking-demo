@@ -1,6 +1,8 @@
 package org.iisiplusone.nonblockingdemo.endpoint;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -65,10 +67,14 @@ public class NonBlockingDemoBeans extends WebMvcConfigurerAdapter {
 				
 				
 				try {
+					
+					Logger.getGlobal().log(Level.INFO, "Calling : http://localhost:"+System.getenv("PORT")+"/demo/mock");
+
 					HttpResponse response = httpDefaultClient()
 					.execute(new HttpGet("http://localhost:"+System.getenv("PORT")+"/demo/mock"));
 					
 					System.out.println(response.getAllHeaders());
+					Logger.getGlobal().log(Level.INFO, "Response : "+response.getAllHeaders());
 					
 					
 				} catch (ClientProtocolException e) {
