@@ -33,7 +33,7 @@ public class ServerStartup {
 			
 			Logger.getGlobal().log( Level.INFO, "running on ip: "+InetAddress.getLocalHost());
 			
-			Logger.getGlobal().log(Level.INFO, "Calling : http://"+InetAddress.getLocalHost().getHostAddress()+":"+System.getenv("PORT")+"/non-blocking-demo/mock");
+			Logger.getGlobal().log(Level.INFO, "Calling : http://127.0.0.1:"+System.getenv("PORT")+"/non-blocking-demo/mock");
 
 			HttpResponse response = defaultHttpClient
 			.execute(new HttpGet("http://localhost:"+System.getenv("PORT")+"/demo/mock"));
