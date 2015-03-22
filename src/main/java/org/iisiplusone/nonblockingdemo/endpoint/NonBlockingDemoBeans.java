@@ -13,10 +13,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.nio.client.HttpAsyncClient;
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.Lifecycle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -52,48 +54,22 @@ public class NonBlockingDemoBeans extends WebMvcConfigurerAdapter {
     }
     
     @Bean
-    public Lifecycle startupCaller(){
+    public ServerStartup serverStartup(){
     	
-    	return new Lifecycle() {
-			
-			@Override
-			public void stop() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void start() {
-				
-				
-				try {
-					
-					Logger.getGlobal().log(Level.INFO, "Calling : http://localhost:"+System.getenv("PORT")+"/demo/mock");
-
-					HttpResponse response = httpDefaultClient()
-					.execute(new HttpGet("http://localhost:"+System.getenv("PORT")+"/demo/mock"));
-					
-					System.out.println(response.getAllHeaders());
-					Logger.getGlobal().log(Level.INFO, "Response : "+response.getAllHeaders());
-					
-					
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-			
-			@Override
-			public boolean isRunning() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-		};
+    	return new ServerStartup();
     	
+    	
+    }
+    
+    @Bean 
+    public MethodInvokingFactoryBean methodInvoker(){
+    	
+    	MethodInvokingFactoryBean invokingBean = new MethodInvokingFactoryBean();
+    	invokingBean.setTargetObject(serverStartup());
+    	invokingBean.setTargetMethod("start");
+    	
+    	
+    	return invokingBean;
     	
     }
   

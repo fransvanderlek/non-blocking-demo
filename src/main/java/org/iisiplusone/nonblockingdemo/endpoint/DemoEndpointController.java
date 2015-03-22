@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.concurrent.FutureCallback;
 import org.apache.http.nio.client.HttpAsyncClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +37,7 @@ public class DemoEndpointController {
 
 	@Autowired
 	private HttpClient defaultHttpClient;
-
+	
 	@RequestMapping(value = "invoke1", method = GET)
 	@ResponseBody
 	public DeferredResult<String> invoke1() {
